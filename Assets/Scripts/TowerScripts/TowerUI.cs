@@ -18,6 +18,8 @@ public class TowerUI : MonoBehaviour
     public TMP_Text upgradeText;
     public TMP_Text sellText;
 
+    public TMP_Text[] elementCostTexts;
+
     public float heightAboveTower = 1.5f;
 
     
@@ -133,6 +135,7 @@ public class TowerUI : MonoBehaviour
         UpdateWheel();
     }
 
+
     void UpdateWheel()
     {
         bool choosingElement = selectedTower.tier == 0;
@@ -145,11 +148,16 @@ public class TowerUI : MonoBehaviour
 
         if (choosingElement)
         {
+            //Display the cost of each element
+            foreach (TMP_Text elementCostText in elementCostTexts)
+            {
+                elementCostText.text = selectedTower.infusionCost.ToString();
+            }
+
             return;
         }
 
-        UpdateUpgradeColour();
-
+   
         bool maxTier = selectedTower.tier >= 3;
 
         upgradeButton.interactable = !maxTier;
@@ -189,21 +197,7 @@ public class TowerUI : MonoBehaviour
 
         Destroy(tower);
     }
-
-    void UpdateUpgradeColour()
-    {
-        string elementName = selectedTower.currentElement + "Button";
-
-        foreach (Button button in elementPanel.GetComponentsInChildren<Button>(true))
-        {
-            if (button.name == elementName)
-            {
-                upgradeButton.colors = button.colors;
-                return;
-            }
-        }
-    }
-
+    //Anywhere where it is 0 references 99% of the time assume i'm using buttons
     public void ChooseElement(int element)
     {
         if (selectedTower != null && selectedTower.InfuseTower((TowerElement)element))

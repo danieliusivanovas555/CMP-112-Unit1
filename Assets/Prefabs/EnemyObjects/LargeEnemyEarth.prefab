@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92f67e99289d8f4485acb2190ed541f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 150
-  currencyReward: 100
+  maxHealth: 400
+  currencyReward: 60
 --- !u!114 &-9010930926561966409
 MonoBehaviour:
   m_ObjectHideFlags: 0

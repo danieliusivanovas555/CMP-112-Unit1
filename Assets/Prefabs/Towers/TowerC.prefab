@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7047869383914196492}
   - component: {fileID: 2507819392265778074}
   - component: {fileID: 6772900619469399655}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CannonHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5803549510285421899}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: firePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 2826626472237216715}
   - component: {fileID: 1685049680802394683}
   - component: {fileID: 3737511623734970078}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TowerC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ MeshCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
@@ -250,17 +250,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285520f7c42e44f4082cc98e7824aa57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerCost: 500
-  damage: 80
+  towerCost: 800
+  damage: 50
   attackRange: 20
   attackSpeed: 0.4
   placementRadius: 1.43
   infusionCost: 450
   tier2Cost: 650
   tier3Cost: 1000
-  sellPercentage: 0.7
   currentElement: 0
   tier: 0
+  sellPercentage: 0.7
   towerRenderer: {fileID: 4879186128478133221}
   materialIndex: 3
   fireMaterial: {fileID: 2100000, guid: 66c394ad8efb9a44e81e58a5451abfe8, type: 2}
@@ -293,7 +293,6 @@ MonoBehaviour:
   rotatingPivot: {fileID: 7047869383914196492}
   rotationSpeed: 581.8
   rotationOffset: 90
-  showDebug: 1
 --- !u!1 &5678022102490011073
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +304,8 @@ GameObject:
   - component: {fileID: 7675536057266719959}
   - component: {fileID: 4029675836136920627}
   - component: {fileID: 7635895181002095785}
-  m_Layer: 0
+  - component: {fileID: 388613227088589135}
+  m_Layer: 7
   m_Name: TowerCShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,6 +382,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &388613227088589135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5678022102490011073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31785b524786c494e86aaa043681791d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: {x: 0, y: -10, z: 0}
 --- !u!1 &7854124177593372917
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,7 +406,8 @@ GameObject:
   - component: {fileID: 4033511518018383324}
   - component: {fileID: 8873219360360952663}
   - component: {fileID: 911248544243694524}
-  m_Layer: 0
+  - component: {fileID: 1337771678882055427}
+  m_Layer: 7
   m_Name: DiscDetailC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,3 +484,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1337771678882055427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7854124177593372917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31785b524786c494e86aaa043681791d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: {x: 0, y: 15, z: 0}

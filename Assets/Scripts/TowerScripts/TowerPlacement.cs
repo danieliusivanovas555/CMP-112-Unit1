@@ -1,10 +1,12 @@
-
 //Dan Ivanovas
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class TowerPlacement : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+
+    //I was so dumb I could've used a spherecast to check collision placement and just increase the value 
+    //To our needs, Trying to get the 
     public GameObject towerPrefab;
     public GameObject previewPrefab;
 
@@ -24,7 +26,6 @@ public class TowerPlacement : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     private TowerSounds sounds;
 
     private GameObject preview;
-    private MeshCollider previewCollider;
     private Renderer[] previewRenderers;
 
     private Vector3 placementPosition;
@@ -52,28 +53,13 @@ public class TowerPlacement : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
         //Create the tower preview
         preview = Instantiate(previewPrefab);
-        previewCollider = preview.GetComponentInChildren<MeshCollider>();
-
-        //Check if the preview has a convex MeshCollider
-        if (previewCollider == null || !previewCollider.convex)
-        {
-            Debug.LogError("Preview needs a convex MeshCollider.");
-            Destroy(preview);
-            preview = null;
-            return;
-        }
-
         previewRenderers = preview.GetComponentsInChildren<Renderer>();
 
-        //Only enable the collider used for placement
+        //Disable preview colliders so they don't interfere with raycasts
         foreach (Collider collider in preview.GetComponentsInChildren<Collider>())
         {
-            collider.enabled = collider == previewCollider;
+            collider.enabled = false;
         }
-
-        //Prevent the preview from interfering with raycasts
-        previewCollider.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-        previewCollider.isTrigger = true;
 
         isDragging = true;
         materialSet = false;
@@ -164,17 +150,10 @@ public class TowerPlacement : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         UpdateMaterial();
     }
 
-
     bool IsBlocked()
     {
-        //Update the collider position
-        Physics.SyncTransforms();
-
-        //Get the tower collider size
-        Bounds bounds = previewCollider.bounds;
-
-        //Check if there are any obstacles
-        return Physics.CheckBox(bounds.center, bounds.extents, Quaternion.identity, blockedLayers, QueryTriggerInteraction.Ignore);
+        //Check for obstacles within the tower's placement radius
+        return Physics.CheckSphere(placementPosition + Vector3.up * 0.1f, towerStats.placementRadius, blockedLayers, QueryTriggerInteraction.Ignore);
     }
 
     void UpdateMaterial()

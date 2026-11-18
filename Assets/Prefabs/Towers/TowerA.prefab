@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4751883762792963799}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FIrepoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,8 @@ GameObject:
   - component: {fileID: 2933248857860163650}
   - component: {fileID: 389276013176014699}
   - component: {fileID: 4262148090259029861}
-  m_Layer: 0
+  - component: {fileID: 7360294418160682124}
+  m_Layer: 7
   m_Name: TowerAShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,6 +120,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7360294418160682124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3046584734234043324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31785b524786c494e86aaa043681791d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: {x: 0, y: 10, z: 0}
 --- !u!1 &4807850132944736279
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,7 +144,8 @@ GameObject:
   - component: {fileID: 7869757664812415749}
   - component: {fileID: 8818610949804319836}
   - component: {fileID: 5327750778019685937}
-  m_Layer: 0
+  - component: {fileID: 6418294321530067026}
+  m_Layer: 7
   m_Name: DiscDetailA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,6 +222,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6418294321530067026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4807850132944736279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31785b524786c494e86aaa043681791d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: {x: 0, y: -5, z: 0}
 --- !u!1 &7693203530470978919
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +249,7 @@ GameObject:
   - component: {fileID: 1913289713824213741}
   - component: {fileID: 8401453001398887761}
   - component: {fileID: 112245002345293090}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TowerA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +346,7 @@ MeshCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
@@ -336,17 +364,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285520f7c42e44f4082cc98e7824aa57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerCost: 100
-  damage: 20
+  towerCost: 150
+  damage: 10
   attackRange: 8
   attackSpeed: 1
   placementRadius: 1.43
   infusionCost: 100
   tier2Cost: 150
   tier3Cost: 250
-  sellPercentage: 0.7
   currentElement: 0
   tier: 0
+  sellPercentage: 0.7
   towerRenderer: {fileID: 4547353408978614390}
   materialIndex: 3
   fireMaterial: {fileID: 2100000, guid: 66c394ad8efb9a44e81e58a5451abfe8, type: 2}
@@ -379,7 +407,6 @@ MonoBehaviour:
   rotatingPivot: {fileID: 4638159750987256612}
   rotationSpeed: 581.8
   rotationOffset: 90
-  showDebug: 1
 --- !u!1 &8025851386612060736
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +418,7 @@ GameObject:
   - component: {fileID: 4638159750987256612}
   - component: {fileID: 5977423884070363094}
   - component: {fileID: 7057399678595518900}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BaseTowerHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}

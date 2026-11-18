@@ -1,42 +1,69 @@
+//Dan Ivanovas
+using UnityEngine;
 
 public abstract class ElementUpgrade
 {
-    public abstract void ApplyTier(BaseTowerScript tower, int tier);
+
+    //OMGGGGGGGG I was wondering why the towers were seemingly getting stronger with the tier upgrades
+    //Turns out I may have been stacking apply tier function in the old method
+    //Also reduced ligthning aoe because that element is broken
+    
+    protected int baseDamage;
+    protected float baseRange;
+    protected float baseAttackSpeed;
+
+    public void ApplyTier(BaseTowerScript tower, int tier)
+    {
+        //Save the original tower stats when first infused
+        if (tier == 1)
+        {
+            baseDamage = tower.damage;
+            baseRange = tower.attackRange;
+            baseAttackSpeed = tower.attackSpeed;
+        }
+
+        //Apply the upgrade using the original stats
+        ApplyUpgrade(tower, tier);
+    }
+
+    protected abstract void ApplyUpgrade(BaseTowerScript tower, int tier);
 }
 
-// Fire increases damage
 public class FireElement : ElementUpgrade
 {
-    public override void ApplyTier(BaseTowerScript tower, int tier)
+    protected override void ApplyUpgrade(BaseTowerScript tower, int tier)
     {
-        tower.damage += tier + 1;
+        //Increase damage by 50% per tier
+        tower.damage = Mathf.RoundToInt(baseDamage * (1f + tier * 0.5f));
     }
 }
 
-// Ice increases range
 public class IceElement : ElementUpgrade
 {
-    public override void ApplyTier(BaseTowerScript tower, int tier)
+    protected override void ApplyUpgrade(BaseTowerScript tower, int tier)
     {
-        tower.attackRange += (tier + 1) * 0.5f;
+        //Increase attack range by 25% per tier
+        tower.attackRange = baseRange * (1f + tier * 0.25f);
     }
 }
 
-// Lightning increases attack speed
 public class LightningElement : ElementUpgrade
 {
-    public override void ApplyTier(BaseTowerScript tower, int tier)
+    protected override void ApplyUpgrade(BaseTowerScript tower, int tier)
     {
-        tower.attackSpeed += (tier + 2) * 0.1f;
+        //Increase attack speed by 25% per tier
+        tower.attackSpeed = baseAttackSpeed * (1f + tier * 0.25f);
     }
 }
 
-// Earth increases damage and range
 public class EarthElement : ElementUpgrade
 {
-    public override void ApplyTier(BaseTowerScript tower, int tier)
+    protected override void ApplyUpgrade(BaseTowerScript tower, int tier)
     {
-        tower.damage += tier;
-        tower.attackRange += 0.5f;
+        //Increase damage by 25% per tier
+        tower.damage = Mathf.RoundToInt(baseDamage * (1f + tier * 0.25f));
+
+        //Increase attack range by 15% per tier
+        tower.attackRange = baseRange * (1f + tier * 0.15f);
     }
 }
