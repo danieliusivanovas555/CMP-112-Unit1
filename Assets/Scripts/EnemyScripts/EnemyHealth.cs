@@ -1,31 +1,29 @@
-//Dan Ivanovas
+//Daniel Ferguson
 using UnityEngine;
 
 public class EnemyHealth : Health
 {
-    //Store any values related to the enemy here
+    //store values related to enemies
     public int currencyReward = 10;
 
-    //Reference to the Currency Manager
+    //reference to the Currency Manager
     private CurrencyManager currencyManager;
 
     protected override void Awake()
     {
         base.Awake();
 
-        //enemy is a prefab so when it spawn it needs to find a reference to currency manager
-
-        // you are probably going to use something like this for towers potentially
+        //find the reference to currency manager
 
         currencyManager = FindFirstObjectByType<CurrencyManager>();
     }
 
-    //If enemy dies add currency it has been set
+    //if enemy dies add currency set above to player's total
 
-    //Then kill it :(
+    //destroy enemy on kill
     protected override void Die()
     {
-        // Reward player for defeating enemy
+        //reward player for kill before destroying
         currencyManager.AddCurrency(currencyReward);
 
         Destroy(gameObject);

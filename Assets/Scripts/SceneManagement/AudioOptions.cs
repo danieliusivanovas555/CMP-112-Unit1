@@ -14,13 +14,16 @@ public class AudioOptions : MonoBehaviour
 
     void Start()
     {
+        // Load saved volume
         float volume = PlayerPrefs.GetFloat("Volume", 1f);
 
         volumeSlider.value = volume;
         AudioListener.volume = volume;
 
+        // Connect volume slider
         volumeSlider.onValueChanged.AddListener(SetVolume);
 
+        // Only open the Main Menu in the menu scene
         if (isMainMenu)
         {
             mainMenuPanel.SetActive(true);

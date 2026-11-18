@@ -145,9 +145,10 @@ public class TowerAttack : MonoBehaviour
         rotatingPivot.rotation = Quaternion.RotateTowards(rotatingPivot.rotation, targetRotation,rotationSpeed * Time.deltaTime);
     }
 
+//Daniel Ferguson
     void Fire()
     {
-        //Choose the projectile based on the tower element
+        //choose projectile based on tower element
         TowerProjectile selectedProjectile = projectilePrefab;
 
         switch (tower.currentElement)
@@ -169,13 +170,13 @@ public class TowerAttack : MonoBehaviour
                 break;
         }
 
-        //Use the normal projectile if an elemental one isn't assigned
+        //use the base projectile if no element is assigned
         if (selectedProjectile == null)
         {
             selectedProjectile = projectilePrefab;
         }
 
-        //Spawn the projectile at the firing point
+        //spawn the projectile at the firing point of turret, launch at current target
         TowerProjectile projectile = Instantiate(selectedProjectile, firePoint.position,firePoint.rotation);
 
         projectile.Launch(currentTarget, tower);
@@ -183,7 +184,7 @@ public class TowerAttack : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        //Display the tower attack range in the Scene view
+        //display tower attack range in Scene view for visual clarity
         BaseTowerScript stats = GetComponent<BaseTowerScript>();
 
         if (stats != null)
